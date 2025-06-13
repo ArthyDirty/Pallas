@@ -1,42 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://d14t5h65ng55w"]
+[gd_scene load_steps=4 format=3 uid="uid://d14t5h65ng55w"]
 
-[ext_resource type="Script" uid="uid://b00rig4tqu7sc" path="res://Scripts/Deck.gd" id="1_4r4v6"]
-[ext_resource type="Texture2D" uid="uid://x6sp4blnx1c0" path="res://Sprites/Cartes.png" id="2_epq6d"]
-[ext_resource type="SpriteFrames" uid="uid://dmpmyk4saqleh" path="res://Sprites/Sprite frames/surbrillance_sprite_frames.tres" id="3_raw4h"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r43n4"]
-atlas = ExtResource("2_epq6d")
-region = Rect2(680, 3600, 680, 1200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aj7qs"]
-atlas = ExtResource("2_epq6d")
-region = Rect2(0, 4800, 680, 1200)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ohsx3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r43n4")
-}],
-"loop": false,
-"name": &"empty",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aj7qs")
-}],
-"loop": false,
-"name": &"not_empty",
-"speed": 5.0
-}]
+[ext_resource type="Script" uid="uid://bjmrbh437crpp" path="res://Scripts/Deck.gd" id="1_4r4v6"]
+[ext_resource type="SpriteFrames" uid="uid://cogsrrfwgv510" path="res://Sprites/SpriteFrames/deck_sprite_frames.tres" id="2_epq6d"]
+[ext_resource type="SpriteFrames" uid="uid://csl4gtqu500gd" path="res://Sprites/SpriteFrames/surbrillance_sprite_frames.tres" id="3_raw4h"]
 
 [node name="Deck" type="Node2D"]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_4r4v6")
 
 [node name="DeckAnimatedSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_ohsx3")
+sprite_frames = ExtResource("2_epq6d")
 animation = &"not_empty"
 
 [node name="SurbrillanceAnimatedSprite" type="AnimatedSprite2D" parent="."]

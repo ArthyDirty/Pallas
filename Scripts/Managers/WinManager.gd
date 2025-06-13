@@ -106,7 +106,7 @@ func _check_n_align(n_align: int = 3) -> bool:
 								var pos = positions[-(k + 1)]
 								if pos not in aligned_positions:
 									aligned_positions.append(pos)
-									score += jeu_carte[pos.x][pos.y].data.points
+									score += jeu_carte[pos.x][pos.y].data.damage
 							alignment += 1
 					else:
 						last_card = card

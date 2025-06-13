@@ -5,12 +5,9 @@ extends Node2D
 @onready var deck_animated_sprite: AnimatedSprite2D = $DeckAnimatedSprite
 @onready var surbrillance_animated_sprite: AnimatedSprite2D = $SurbrillanceAnimatedSprite
 
-const card_scene = preload("res://Scenes/Cards/card.tscn")
+const card_scene = preload("res://Scenes/Cards/CardScene.tscn")
 
 @export var deck_data: DeckData
-
-@export_range(0, 100,1) var uncommon_chance: int = 25
-@export_range(0, 100,1) var rare_chance: int = 15
 
 @export var draw_delay := 1.0  # secondes entre deux tirages
 
@@ -49,17 +46,6 @@ func _on_button_mouse_exited() -> void:
 	surbrillance_animated_sprite.play("default")
 
 
-func draw_card():
-	var rand = randi_range(1, 100)
-		
-	if rand <= rare_chance:
-		return deck_data.rare_cards.pick_random()
-	elif rand <= rare_chance + uncommon_chance:
-		return deck_data.uncommon_cards.pick_random()
-	else:
-		return deck_data.common_cards.pick_random()
-
-
 func spawn_card(card: CardData = null):
 	var card_data
 	
@@ -68,8 +54,7 @@ func spawn_card(card: CardData = null):
 	elif deck_empty:
 		return null
 	else:
-		card_data = draw_card()
-		#card_data = cards.pop_front()
+		card_data = cards.pop_front()
 	
 	var card_instance = card_scene.instantiate()
 	call_deferred("add_child", card_instance)
@@ -80,6 +65,7 @@ func spawn_card(card: CardData = null):
 	if cards.is_empty():
 		deck_empty = true
 		deck_animated_sprite.play("empty")
+		print("empty")
 	
 	await get_tree().create_timer(draw_delay).timeout
 	can_draw = true  # autoriser à tirer une nouvelle carte

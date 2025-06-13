@@ -1,30 +1,30 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://btgae8331v3xe"]
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://b5kcoeyp0md32"]
 
-[ext_resource type="Texture2D" uid="uid://dklo2qf57fpmj" path="res://Sprites/Cards01.png" id="1_su7ne"]
+[ext_resource type="Texture2D" uid="uid://dklo2qf57fpmj" path="res://Sprites/Cards01.png" id="1_hg21d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_anmox"]
-atlas = ExtResource("1_su7ne")
+atlas = ExtResource("1_hg21d")
 region = Rect2(2720, 0, 680, 1200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sqcj7"]
-atlas = ExtResource("1_su7ne")
+atlas = ExtResource("1_hg21d")
 region = Rect2(2720, 0, 680, 1200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pbegl"]
-atlas = ExtResource("1_su7ne")
+atlas = ExtResource("1_hg21d")
 region = Rect2(2040, 0, 680, 1200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lkmky"]
-atlas = ExtResource("1_su7ne")
+atlas = ExtResource("1_hg21d")
 region = Rect2(1360, 0, 680, 1200)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ugawh"]
-atlas = ExtResource("1_su7ne")
-region = Rect2(680, 0, 680, 1200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg21d"]
+atlas = ExtResource("1_hg21d")
+region = Rect2(680, 1200, 680, 1200)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wceye"]
-atlas = ExtResource("1_su7ne")
-region = Rect2(0, 0, 680, 1200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vr78"]
+atlas = ExtResource("1_hg21d")
+region = Rect2(0, 1200, 680, 1200)
 
 [resource]
 animations = [{
@@ -47,10 +47,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_lkmky")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ugawh")
+"texture": SubResource("AtlasTexture_hg21d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wceye")
+"texture": SubResource("AtlasTexture_4vr78")
 }],
 "loop": false,
 "name": &"flip",
@@ -58,7 +58,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wceye")
+"texture": SubResource("AtlasTexture_4vr78")
 }],
 "loop": false,
 "name": &"front",

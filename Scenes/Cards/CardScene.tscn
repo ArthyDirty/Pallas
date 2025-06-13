@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://byhc47aqytgpg"]
+
+[ext_resource type="Script" uid="uid://cvtrvep3g5586" path="res://Scripts/CardAnimator.gd" id="1_cmkgy"]
+[ext_resource type="Script" uid="uid://k0er0aellq0i" path="res://Scenes/Cards/CardManager.gd" id="1_mk0u1"]
+[ext_resource type="SpriteFrames" uid="uid://btgae8331v3xe" path="res://Sprites/SpriteFrames/blank_card_sprite_frames.tres" id="1_mqo5t"]
+[ext_resource type="SpriteFrames" uid="uid://csl4gtqu500gd" path="res://Sprites/SpriteFrames/surbrillance_sprite_frames.tres" id="3_l7glt"]
+[ext_resource type="SpriteFrames" uid="uid://4qf2ll57xjr7" path="res://Sprites/SpriteFrames/shadow_sprite_frames.tres" id="4_mk0u1"]
+[ext_resource type="Script" uid="uid://cvh5oy47q32bs" path="res://Scripts/Card/CardMovement.gd" id="5_l7glt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mk0u1"]
+size = Vector2(582, 1046)
+
+[node name="CardScene" type="Node2D"]
+script = ExtResource("1_mk0u1")
+
+[node name="CardSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_mqo5t")
+animation = &"flip"
+
+[node name="SurbrillanceSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("3_l7glt")
+
+[node name="ShadowSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = -1
+sprite_frames = ExtResource("4_mk0u1")
+animation = &"shadow"
+
+[node name="CardButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -256.0
+offset_top = -492.0
+offset_right = 258.0
+offset_bottom = 493.0
+mouse_default_cursor_shape = 2
+
+[node name="CardAnimator" type="Node2D" parent="."]
+script = ExtResource("1_cmkgy")
+
+[node name="CardMovement" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("5_l7glt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardMovement"]
+shape = SubResource("RectangleShape2D_mk0u1")
+
+[connection signal="button_down" from="CardButton" to="CardMovement" method="_on_card_button_down"]
+[connection signal="button_up" from="CardButton" to="CardMovement" method="_on_card_button_up"]
+[connection signal="area_entered" from="CardMovement" to="CardMovement" method="_on_emplacement_entered"]
+[connection signal="area_exited" from="CardMovement" to="CardMovement" method="_on_emplacement_exited"]

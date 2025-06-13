@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://b2y42cvhfiq3q"]
 
-[ext_resource type="Script" uid="uid://bkbor60wfe7wr" path="res://Scripts/Data/CardData.gd" id="1_8rtou"]
+[ext_resource type="Script" uid="uid://dbk1wpx06f82j" path="res://Scripts/Data/CardData.gd" id="1_8rtou"]
 
 [resource]
 script = ExtResource("1_8rtou")
-name = "blank"
+name = 0
 power_type = 0
-sprite_frames_path = "res://Sprites/Sprite frames/blank_card_sprite_frames.tres"
-surbrillance_sprite_frames_path = "res://Sprites/Sprite frames/surbrillance_sprite_frames.tres"
-metadata/_custom_type_script = "uid://bkbor60wfe7wr"
+damage = 0
+sprite_frames_path = "res://Sprites/SpriteFrames/blank_card_sprite_frames.tres"
+surbrillance_sprite_frames_path = "res://Sprites/SpriteFrames/surbrillance_sprite_frames.tres"

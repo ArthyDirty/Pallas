@@ -1,8 +1,17 @@
-[gd_resource type="SpriteFrames" format=3 uid="uid://4qf2ll57xjr7"]
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://4qf2ll57xjr7"]
+
+[ext_resource type="Texture2D" uid="uid://dklo2qf57fpmj" path="res://Sprites/Cards01.png" id="1_gu23s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkpye"]
+atlas = ExtResource("1_gu23s")
+region = Rect2(5440, 0, 680, 1200)
 
 [resource]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkpye")
+}],
 "loop": false,
 "name": &"shadow",
 "speed": 5.0

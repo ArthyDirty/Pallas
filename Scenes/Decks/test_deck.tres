@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DeckData" load_steps=6 format=3 uid="uid://i0ufh3knmkjp"]
+
+[ext_resource type="Script" uid="uid://dbk1wpx06f82j" path="res://Scripts/Data/CardData.gd" id="1_6wdk0"]
+[ext_resource type="Script" uid="uid://drw73skb2quwh" path="res://Scripts/Data/DeckData.gd" id="2_b67vh"]
+[ext_resource type="Resource" uid="uid://cbwl7md3em5r4" path="res://Scenes/Cards/light_attack.tres" id="2_jklq1"]
+[ext_resource type="Resource" uid="uid://1ecb66p12s7e" path="res://Scenes/Cards/medium_attack.tres" id="3_3qsxo"]
+[ext_resource type="Resource" uid="uid://ca21pmcar1n3o" path="res://Scenes/Cards/heavy_attack.tres" id="4_58vln"]
+
+[resource]
+script = ExtResource("2_b67vh")
+deck_name = "Test Deck"
+cards = Array[ExtResource("1_6wdk0")]([ExtResource("2_jklq1"), ExtResource("2_jklq1"), ExtResource("2_jklq1"), ExtResource("2_jklq1"), ExtResource("2_jklq1"), ExtResource("2_jklq1"), ExtResource("2_jklq1"), ExtResource("2_jklq1"), ExtResource("2_jklq1"), ExtResource("3_3qsxo"), ExtResource("3_3qsxo"), ExtResource("3_3qsxo"), ExtResource("3_3qsxo"), ExtResource("3_3qsxo"), ExtResource("3_3qsxo"), ExtResource("4_58vln"), ExtResource("4_58vln"), ExtResource("4_58vln")])
+metadata/_custom_type_script = "uid://drw73skb2quwh"

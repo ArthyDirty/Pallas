@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://qi4wy48xqd82"]
 
-[ext_resource type="FontFile" uid="uid://bau8h4ff7pnaa" path="res://Divers/Fonts/BISON-BOLD.TTF" id="1_0t2ds"]
-[ext_resource type="Texture2D" uid="uid://clgxhavyx8tfy" path="res://Sprites/Plateau.png" id="1_wqnu0"]
+[ext_resource type="FontFile" uid="uid://u2aeg6asgghy" path="res://Divers/Fonts/BISON-BOLD.TTF" id="1_0t2ds"]
+[ext_resource type="Texture2D" uid="uid://coe1dq6c3d6ar" path="res://Sprites/Plateau.png" id="1_wqnu0"]
+[ext_resource type="Texture2D" uid="uid://bw1o3jbn1sfop" path="res://Sprites/LeftPanel.png" id="3_0t2ds"]
 [ext_resource type="PackedScene" uid="uid://yflcd83ftsjq" path="res://Scenes/Utilities/emplacement.tscn" id="3_1v8e7"]
-[ext_resource type="Texture2D" uid="uid://blo71ok2vsolg" path="res://Sprites/UIRightPanel.png" id="3_5tvr5"]
 [ext_resource type="PackedScene" uid="uid://d14t5h65ng55w" path="res://Scenes/Decks/deck.tscn" id="3_128kh"]
-[ext_resource type="Resource" uid="uid://cuniqls2vom7r" path="res://Scenes/Decks/moon_deck.tres" id="4_r5js4"]
+[ext_resource type="Texture2D" uid="uid://c7yii5sjw6e1o" path="res://Sprites/RightPanel.png" id="4_guigt"]
 [ext_resource type="PackedScene" uid="uid://mruenv7ca7mn" path="res://Scenes/Utilities/reset_level.tscn" id="5_adwds"]
-[ext_resource type="Script" uid="uid://wv2aa5rjmmb" path="res://Scenes/Levels/ScoreLabel.gd" id="6_r5js4"]
-[ext_resource type="Texture2D" uid="uid://be1pm0t7t2k1r" path="res://Sprites/UILeftPanel.png" id="7_pr658"]
+[ext_resource type="Script" uid="uid://6qx2xge56jxu" path="res://Scenes/Levels/ScoreLabel.gd" id="6_r5js4"]
+[ext_resource type="Resource" uid="uid://i0ufh3knmkjp" path="res://Scenes/Decks/test_deck.tres" id="8_0t2ds"]
 
 [sub_resource type="Theme" id="Theme_pr658"]
 default_font_size = 34
@@ -43,12 +43,12 @@ script = ExtResource("6_r5js4")
 [node name="LeftPanel" type="Sprite2D" parent="UserInterface"]
 position = Vector2(-725, 0)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("7_pr658")
+texture = ExtResource("3_0t2ds")
 
 [node name="RightPanel" type="Sprite2D" parent="UserInterface"]
 position = Vector2(725, 0)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_5tvr5")
+texture = ExtResource("4_guigt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -96,8 +96,8 @@ emp_col = 2
 emp_row = 2
 
 [node name="Deck" parent="." instance=ExtResource("3_128kh")]
-position = Vector2(728, -209)
-deck_data = ExtResource("4_r5js4")
+position = Vector2(727, -240)
+deck_data = ExtResource("8_0t2ds")
 
 [node name="ResetLevel" parent="." instance=ExtResource("5_adwds")]
 position = Vector2(892, -472)
