@@ -14,6 +14,19 @@ config/name="Pallas"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PowerManager="*res://Scripts/Managers/PowerManager.gd"
+ScoreManager="*res://Scripts/Managers/ScoreManager.gd"
+WinManager="*res://Scripts/Managers/WinManager.gd"
+GameData="*res://Scripts/Data/GameData.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

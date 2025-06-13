@@ -1,0 +1,29 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://btgae8331v3xe"]
+
+[resource]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"flip",
+"speed": 8.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"hidden",
+"speed": 8.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"hide",
+"speed": 8.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"recto",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"verso",
+"speed": 5.0
+}]

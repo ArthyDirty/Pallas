@@ -1,0 +1,103 @@
+[gd_scene load_steps=11 format=3 uid="uid://qi4wy48xqd82"]
+
+[ext_resource type="FontFile" uid="uid://bau8h4ff7pnaa" path="res://Divers/Fonts/BISON-BOLD.TTF" id="1_0t2ds"]
+[ext_resource type="Texture2D" uid="uid://clgxhavyx8tfy" path="res://Sprites/Plateau.png" id="1_wqnu0"]
+[ext_resource type="PackedScene" uid="uid://yflcd83ftsjq" path="res://Scenes/Utilities/emplacement.tscn" id="3_1v8e7"]
+[ext_resource type="Texture2D" uid="uid://blo71ok2vsolg" path="res://Sprites/UIRightPanel.png" id="3_5tvr5"]
+[ext_resource type="PackedScene" uid="uid://d14t5h65ng55w" path="res://Scenes/Decks/deck.tscn" id="3_128kh"]
+[ext_resource type="Resource" uid="uid://cuniqls2vom7r" path="res://Scenes/Decks/moon_deck.tres" id="4_r5js4"]
+[ext_resource type="PackedScene" uid="uid://mruenv7ca7mn" path="res://Scenes/Utilities/reset_level.tscn" id="5_adwds"]
+[ext_resource type="Script" uid="uid://wv2aa5rjmmb" path="res://Scenes/Levels/ScoreLabel.gd" id="6_r5js4"]
+[ext_resource type="Texture2D" uid="uid://be1pm0t7t2k1r" path="res://Sprites/UILeftPanel.png" id="7_pr658"]
+
+[sub_resource type="Theme" id="Theme_pr658"]
+default_font_size = 34
+
+[node name="Plateau" type="Node2D"]
+
+[node name="UserInterface" type="Control" parent="."]
+z_index = -4
+layout_mode = 3
+anchors_preset = 0
+offset_right = 8.0
+offset_bottom = 8.0
+mouse_filter = 2
+
+[node name="ScoreLabel" type="Label" parent="UserInterface"]
+z_index = 1
+layout_mode = 0
+offset_left = -923.0
+offset_top = -500.0
+offset_right = -498.0
+offset_bottom = -314.0
+scale = Vector2(0.920303, 0.920303)
+theme = SubResource("Theme_pr658")
+theme_override_fonts/font = ExtResource("1_0t2ds")
+theme_override_font_sizes/font_size = 57
+text = "Highscore : 0
+Score : 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_r5js4")
+
+[node name="LeftPanel" type="Sprite2D" parent="UserInterface"]
+position = Vector2(-725, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_pr658")
+
+[node name="RightPanel" type="Sprite2D" parent="UserInterface"]
+position = Vector2(725, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_5tvr5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PlateauSprite2D" type="Sprite2D" parent="."]
+z_index = -5
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_wqnu0")
+
+[node name="Emplacement" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(-186, 0)
+emp_row = 1
+
+[node name="Emplacement2" parent="." instance=ExtResource("3_1v8e7")]
+emp_col = 1
+emp_row = 1
+
+[node name="Emplacement3" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(188, 0)
+emp_col = 2
+emp_row = 1
+
+[node name="Emplacement4" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(-186, -304)
+
+[node name="Emplacement5" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(0, -304)
+emp_col = 1
+
+[node name="Emplacement6" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(188, -304)
+emp_col = 2
+
+[node name="Emplacement7" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(-186, 306)
+emp_row = 2
+
+[node name="Emplacement8" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(0, 306)
+emp_col = 1
+emp_row = 2
+
+[node name="Emplacement9" parent="." instance=ExtResource("3_1v8e7")]
+position = Vector2(188, 306)
+emp_col = 2
+emp_row = 2
+
+[node name="Deck" parent="." instance=ExtResource("3_128kh")]
+position = Vector2(728, -209)
+deck_data = ExtResource("4_r5js4")
+
+[node name="ResetLevel" parent="." instance=ExtResource("5_adwds")]
+position = Vector2(892, -472)

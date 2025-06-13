@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://mruenv7ca7mn"]
+
+[ext_resource type="Script" uid="uid://1277ta7cmg1t" path="res://Scripts/reset_level.gd" id="1_kud1d"]
+[ext_resource type="Texture2D" uid="uid://cbjjt5nybpym4" path="res://Sprites/Sprite_ResetButton_up.png" id="1_vx42f"]
+[ext_resource type="Texture2D" uid="uid://cl23gchw26vbx" path="res://Sprites/Sprite_ResetButton_down.png" id="2_7fmfb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fmfb"]
+atlas = ExtResource("1_vx42f")
+region = Rect2(0, 0, 471, 471)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kud1d"]
+atlas = ExtResource("2_7fmfb")
+region = Rect2(0, 0, 472, 471)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kud1d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fmfb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kud1d")
+}],
+"loop": false,
+"name": &"pushed",
+"speed": 5.0
+}]
+
+[node name="ResetLevel" type="Node2D"]
+scale = Vector2(0.19, 0.19)
+script = ExtResource("1_kud1d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kud1d")
+autoplay = "default"
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -237.0
+offset_top = -237.0
+offset_right = 237.0
+offset_bottom = 237.0
+mouse_default_cursor_shape = 2
+
+[connection signal="button_down" from="Button" to="." method="_on_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_up"]

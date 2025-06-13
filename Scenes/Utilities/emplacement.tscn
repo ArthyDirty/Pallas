@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://yflcd83ftsjq"]
+
+[ext_resource type="Script" uid="uid://bn24m7vwxoa1w" path="res://Scripts/Emplacements.gd" id="1_ib6ga"]
+[ext_resource type="SpriteFrames" uid="uid://6c2oj4du7k8t" path="res://Sprites/Sprite frames/emplacement_sprite_frames.tres" id="2_feg5i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gx6ct"]
+radius = 76.1052
+
+[node name="Emplacement" type="Area2D" groups=["emplacements"]]
+scale = Vector2(0.25, 0.25)
+collision_layer = 2
+script = ExtResource("1_ib6ga")
+metadata/_custom_type_script = "uid://bn24m7vwxoa1w"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gx6ct")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_feg5i")
+autoplay = "default"

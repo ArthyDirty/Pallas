@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://b61wkoyqlc5yd"]
+
+[resource]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"card_hover",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
