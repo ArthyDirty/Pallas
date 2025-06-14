@@ -22,7 +22,7 @@ func remove_card():
 		card_owned = null
 
 
-func free_emplacement():
+func free_card_slot():
 	card_owned.card_animator.show_card()
 	card_owned.card_animator.play_dissolve(true)
 	card_owned = null

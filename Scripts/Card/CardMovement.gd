@@ -98,6 +98,6 @@ func _on_card_slot_hover(slot: CardSlot):
 		card_slot.on_card_hover(card)
 
 
-func _on_card_slot_exit(card_slot: CardSlot):
+func _on_card_slot_exit(slot: CardSlot):
 	card_slot_hover = false
-	card_slot.on_card_exit(card)
+	slot.on_card_exit(card)

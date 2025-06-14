@@ -145,7 +145,7 @@ func reset_win_manager():
 	jeu_carte = []
 	won = false
 	
-	Card_slots = get_tree().get_nodes_in_group("play_slots")
+	Card_slots = get_tree().get_nodes_in_group("play_slot")
 	for element in Card_slots:
 		element.card_placed.connect(_on_card_placed)
 		var col = element.get_col()
