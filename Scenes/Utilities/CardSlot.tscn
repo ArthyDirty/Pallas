@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cspnylmqcxcop"]
+
+[ext_resource type="Script" uid="uid://8s8ns2fomdem" path="res://Scripts/Emplacements/CardSlot.gd" id="1_fh38t"]
+[ext_resource type="SpriteFrames" uid="uid://b61wkoyqlc5yd" path="res://Sprites/SpriteFrames/emplacement_sprite_frames.tres" id="2_ir200"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4afhn"]
+radius = 76.1052
+
+[node name="CardSlot" type="Area2D"]
+scale = Vector2(0.25, 0.25)
+collision_layer = 2
+script = ExtResource("1_fh38t")
+locked_on_place = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4afhn")
+
+[node name="CardSlotSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_ir200")
+autoplay = "default"

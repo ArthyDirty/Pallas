@@ -22,7 +22,6 @@ func on_card_loaded() -> void:
 	surbrillance_sprite = card.surbrillance_sprite
 	shadow_sprite = card.shadow_sprite
 	show_card()
-	# mettre on card flipped
 
 
 func _process(delta: float) -> void:

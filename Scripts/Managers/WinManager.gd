@@ -2,14 +2,14 @@ extends Node
 
 var deck : Deck
 
-var Emplacements
+var Card_slots
 
 var col_max = 0
 var row_max = 0
 
 var cards_in_game: Array[CardManager] = []
 var jeu = []
-var jeu_emplacements = []
+var jeu_card_slots = []
 var jeu_carte = []
 var won = false
 
@@ -20,10 +20,10 @@ func _process(_delta: float) -> void:
 	cards_in_game = GameData.cards_in_game
 
 
-# appelée lorsqu'une carte est placée sur un emplacement
-func _on_card_placed(emp_col, emp_row, card, card_name, node: Emplacement):
+# appelée lorsqu'une carte est placée sur un card_slot
+func _on_card_placed(emp_col, emp_row, card, card_name, node: CardSlot):
 	jeu[emp_col][emp_row] = card_name
-	jeu_emplacements[emp_col][emp_row] = node
+	jeu_card_slots[emp_col][emp_row] = node
 	jeu_carte[emp_col][emp_row] = card
 	if !won:
 		if !_check_alignement():
@@ -115,10 +115,10 @@ func _check_n_align(n_align: int = 3) -> bool:
 
 					i += 1
 
-	# Libération des emplacements après détection
+	# Libération des card_slots après détection
 	for pos in aligned_positions:
-		jeu_emplacements[pos.x][pos.y].free_emplacement()
-		jeu_emplacements[pos.x][pos.y] = null
+		jeu_card_slots[pos.x][pos.y].free_card_slot()
+		jeu_card_slots[pos.x][pos.y] = null
 		jeu[pos.x][pos.y] = CardNames.CardName.BLANK
 		jeu_carte[pos.x][pos.y] = 0
 
@@ -131,7 +131,7 @@ func _check_n_align(n_align: int = 3) -> bool:
 
 
 func cleanup():
-	for emp in Emplacements:
+	for emp in Card_slots:
 		if is_instance_valid(emp):
 			emp.card_placed.disconnect(_on_card_placed)
 
@@ -141,12 +141,12 @@ func reset_win_manager():
 	row_max = 0
 	cards_in_game = []
 	jeu = []
-	jeu_emplacements = []
+	jeu_card_slots = []
 	jeu_carte = []
 	won = false
 	
-	Emplacements = get_tree().get_nodes_in_group("emplacements")
-	for element in Emplacements:
+	Card_slots = get_tree().get_nodes_in_group("play_slots")
+	for element in Card_slots:
 		element.card_placed.connect(_on_card_placed)
 		var col = element.get_col()
 		var row = element.get_row()
@@ -165,7 +165,7 @@ func reset_win_manager():
 		var col = []
 		for j in range(row_max + 1):
 			col.append(CardNames.CardName.BLANK)
-		jeu_emplacements.append(col)
+		jeu_card_slots.append(col)
 	
 	for i in range(col_max + 1):
 		var col = []

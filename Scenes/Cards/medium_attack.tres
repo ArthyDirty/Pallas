@@ -9,3 +9,5 @@ power_type = 0
 damage = 50
 sprite_frames_path = "res://Sprites/SpriteFrames/medium_attack_card_sprite_frames.tres"
 surbrillance_sprite_frames_path = "res://Sprites/SpriteFrames/surbrillance_sprite_frames.tres"
+current_state = 0
+hidden_state = true

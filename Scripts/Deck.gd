@@ -47,7 +47,7 @@ func _on_button_mouse_exited() -> void:
 
 
 func spawn_card(card: CardData = null):
-	var card_data
+	var card_data: CardData
 	
 	if card:
 		card_data = card
@@ -58,7 +58,7 @@ func spawn_card(card: CardData = null):
 	
 	var card_instance = card_scene.instantiate()
 	call_deferred("add_child", card_instance)
-	card_instance.set_card_data(card_data)
+	card_instance.set_card_data(card_data.duplicate_data())
 	card_drawn.emit(card_instance)
 	
 

@@ -11,9 +11,10 @@ var card_clicked = false
 var can_move = true
 
 # === Données de déplacement ===
-var emplacement_hover = false
-var emplacement_pos
-var last_emplacement
+var card_slot_hover = false
+var card_slot_pos
+var card_slot: CardSlot
+var last_card_slot: CardSlot
 var last_pos
 var dif_pos
 
@@ -51,7 +52,7 @@ func _on_card_button_up():
 		card_clicked = false
 		card.z_index = 3
 
-		if emplacement_hover:
+		if card_slot_hover:
 			_place_card_with_animation()
 		else:
 			_return_to_last_position()
@@ -59,12 +60,21 @@ func _on_card_button_up():
 
 func _place_card_with_animation():
 	var tween = create_tween()
-	tween.tween_property(card, "global_position", emplacement_pos, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(card, "global_position", card_slot_pos, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 	await get_tree().create_timer(0.4).timeout
-	last_emplacement.place_card(card)
 	
-	state_changed.emit("placed")
+	if last_card_slot and last_card_slot != card_slot:
+		last_card_slot.remove_card()
+		
+	card_slot.place_card(card)
+	
+	last_card_slot = card_slot
+	
+	if card_slot.is_locked():
+		state_changed.emit("placed")
+	else:
+		state_changed.emit("idle")
 
 
 func _return_to_last_position():
@@ -80,12 +90,14 @@ func _return_to_last_position():
 	state_changed.emit("idle")
 
 
-func _on_emplacement_entered(emplacement: Emplacement):
-	if emplacement.is_free() and card_clicked:
-		emplacement_hover = true
-		emplacement_pos = emplacement.global_position
-		last_emplacement = emplacement
+func _on_card_slot_hover(slot: CardSlot):
+	if slot.is_free() and card_clicked:
+		card_slot_hover = true
+		card_slot_pos = slot.global_position
+		card_slot = slot
+		card_slot.on_card_hover(card)
 
 
-func _on_emplacement_exited(_emplacement: Emplacement):
-	emplacement_hover = false
+func _on_card_slot_exit(card_slot: CardSlot):
+	card_slot_hover = false
+	card_slot.on_card_exit(card)

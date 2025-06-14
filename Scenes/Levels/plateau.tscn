@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://qi4wy48xqd82"]
+[gd_scene load_steps=12 format=3 uid="uid://qi4wy48xqd82"]
 
 [ext_resource type="FontFile" uid="uid://u2aeg6asgghy" path="res://Divers/Fonts/BISON-BOLD.TTF" id="1_0t2ds"]
 [ext_resource type="Texture2D" uid="uid://coe1dq6c3d6ar" path="res://Sprites/Plateau.png" id="1_wqnu0"]
 [ext_resource type="Texture2D" uid="uid://bw1o3jbn1sfop" path="res://Sprites/LeftPanel.png" id="3_0t2ds"]
-[ext_resource type="PackedScene" uid="uid://yflcd83ftsjq" path="res://Scenes/Utilities/emplacement.tscn" id="3_1v8e7"]
+[ext_resource type="PackedScene" uid="uid://yflcd83ftsjq" path="res://Scenes/Utilities/PlaySlot.tscn" id="3_1v8e7"]
 [ext_resource type="PackedScene" uid="uid://d14t5h65ng55w" path="res://Scenes/Decks/deck.tscn" id="3_128kh"]
 [ext_resource type="Texture2D" uid="uid://c7yii5sjw6e1o" path="res://Sprites/RightPanel.png" id="4_guigt"]
 [ext_resource type="PackedScene" uid="uid://mruenv7ca7mn" path="res://Scenes/Utilities/reset_level.tscn" id="5_adwds"]
 [ext_resource type="Script" uid="uid://6qx2xge56jxu" path="res://Scenes/Levels/ScoreLabel.gd" id="6_r5js4"]
 [ext_resource type="Resource" uid="uid://i0ufh3knmkjp" path="res://Scenes/Decks/test_deck.tres" id="8_0t2ds"]
+[ext_resource type="PackedScene" uid="uid://cspnylmqcxcop" path="res://Scenes/Utilities/CardSlot.tscn" id="10_guigt"]
 
 [sub_resource type="Theme" id="Theme_pr658"]
 default_font_size = 34
@@ -101,3 +102,6 @@ deck_data = ExtResource("8_0t2ds")
 
 [node name="ResetLevel" parent="." instance=ExtResource("5_adwds")]
 position = Vector2(892, -472)
+
+[node name="CardSlot" parent="." instance=ExtResource("10_guigt")]
+position = Vector2(727, 240)
