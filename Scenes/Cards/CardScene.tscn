@@ -52,5 +52,4 @@ shape = SubResource("RectangleShape2D_mk0u1")
 [connection signal="card_flip" from="CardAnimator" to="." method="_on_card_flip"]
 [connection signal="area_entered" from="CardMovement" to="CardMovement" method="_on_emplacement_entered"]
 [connection signal="area_exited" from="CardMovement" to="CardMovement" method="_on_emplacement_exited"]
-[connection signal="card_moving" from="CardMovement" to="." method="_on_card_moving"]
-[connection signal="card_selectable" from="CardMovement" to="." method="_on_card_selectable"]
+[connection signal="state_changed" from="CardMovement" to="." method="_on_state_changed"]

@@ -4,7 +4,7 @@ extends Area2D
 ## Ce script gère tout ce qui concerne les interactions entre le joueur et la carte
 
 # === Références ===
-var card: Node2D = null
+var card: CardManager = null
 
 # === États internes liés au déplacement ===
 var card_clicked = false
@@ -18,8 +18,7 @@ var last_pos
 var dif_pos
 
 # === Signaux ===
-signal card_moving(state)
-signal card_selectable(state)
+signal state_changed(state)
 
 
 func _ready() -> void:
@@ -28,6 +27,7 @@ func _ready() -> void:
 
 
 func _process(_delta):
+	can_move = false if card.data.current_state == CardStates.CardState.PLACED else true
 	if card_clicked and can_move:
 		_drag_card()
 
@@ -39,7 +39,7 @@ func _drag_card():
 
 func _on_card_button_down():
 	if can_move:
-		card_moving.emit(true)
+		state_changed.emit("moving")
 		card_clicked = true
 		last_pos = card.global_position
 		dif_pos = card.global_position - get_viewport().get_mouse_position()
@@ -64,9 +64,7 @@ func _place_card_with_animation():
 	await get_tree().create_timer(0.4).timeout
 	last_emplacement.place_card(card)
 	
-	can_move = false
-	card_moving.emit(false)
-	card_selectable.emit(false)
+	state_changed.emit("placed")
 
 
 func _return_to_last_position():
@@ -79,7 +77,7 @@ func _return_to_last_position():
 	tween.tween_property(card, "global_position", overshoot_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(card, "global_position", last_pos, duration/4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	await get_tree().create_timer(duration + duration/4).timeout
-	card_moving.emit(false)
+	state_changed.emit("idle")
 
 
 func _on_emplacement_entered(emplacement: Emplacement):
@@ -89,5 +87,5 @@ func _on_emplacement_entered(emplacement: Emplacement):
 		last_emplacement = emplacement
 
 
-func _on_emplacement_exited():
+func _on_emplacement_exited(_emplacement: Emplacement):
 	emplacement_hover = false

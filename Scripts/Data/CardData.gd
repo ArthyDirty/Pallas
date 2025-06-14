@@ -8,3 +8,5 @@ extends Resource
 @export var damage : int = 0
 @export var sprite_frames_path: String = "res://Sprites/Sprite frames/blank_card_sprite_frames.tres"
 @export var surbrillance_sprite_frames_path: String = "res://Sprites/Sprite frames/surbrillance_sprite_frames.tres"
+@export var current_state : CardStates.CardState = CardStates.CardState.IDLE
+@export var hidden_state : bool = true

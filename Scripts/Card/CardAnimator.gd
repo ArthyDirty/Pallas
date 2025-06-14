@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 		dissolve(delta)
 	
 	if surbrillance_sprite:
-		if card.mouse_hover and card.card_selectable and not card.card_moving:
+		if card.is_interactable():
 			surbrillance_sprite.play("surbrillance")
 		else:
 			surbrillance_sprite.play("default")
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 
 
 func show_card():
-	if card.card_hidden:
+	if card.data.hidden_state:
 		card_sprite.play("flip")
 		await card_sprite.animation_finished
 		card_flip.emit()

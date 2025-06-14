@@ -13,11 +13,6 @@ extends Node2D
 @onready var card_movement: CardMovement = $CardMovement
 @onready var card_animator: CardAnimator = $CardAnimator
 
-var card_moving = false
-var card_hidden = true
-var card_placed = false
-var card_selectable = true
-
 var mouse_hover = true
 
 
@@ -25,7 +20,9 @@ func _ready():
 	if data == null:
 		print("Pas de CardData assignée")
 		return
+		
 	_load_sprite_frames()
+	
 	card_animator.on_card_loaded()
 
 
@@ -53,13 +50,19 @@ func set_card_data(card_data: CardData) -> void:
 		_load_sprite_frames()
 
 
-func _on_card_moving(state: Variant) -> void:
-	card_moving = state
+func is_interactable() -> bool:
+	return not data.hidden_state and data.current_state == CardStates.CardState.IDLE and mouse_hover
 
+
+
+func _on_state_changed(state: Variant) -> void:
+	match state:
+		"idle":
+			data.current_state = CardStates.CardState.IDLE
+		"moving":
+			data.current_state = CardStates.CardState.MOVING
+		"placed":
+			data.current_state = CardStates.CardState.PLACED
 
 func _on_card_flip() -> void:
-	card_hidden = not card_hidden
-
-
-func _on_card_selectable(state: Variant) -> void:
-	card_selectable = state
+	data.hidden_state = not data.hidden_state
