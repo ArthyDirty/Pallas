@@ -13,7 +13,7 @@ enum PowerType {
 
 var last_card
 
-static func apply_power(power_type: PowerType, card: Card, deck: Deck = null):
+static func apply_power(power_type: PowerType, card: CardManager, deck: Deck = null):
 	match power_type:
 		PowerType.HIDE_WHEN_PLACED:
 			card.hide_card()

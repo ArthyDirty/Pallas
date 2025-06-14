@@ -6,17 +6,14 @@ var dissolve_card = false
 var dissolve_state: float = 0.0
 var speed: float = 100.0 / 2.5  # 100 unités en 5 secondes
 
-
-var card_hidden = true
-var card_flip = true
-
-var card
+var card: CardManager
 var card_sprite: AnimatedSprite2D
 var shadow_sprite: AnimatedSprite2D
 var surbrillance_sprite: AnimatedSprite2D
 
-
 var dissolve_material = preload("res://Divers/Materials/Dissolve.tres").duplicate()
+
+signal card_flip()
 
 
 func on_card_loaded() -> void:
@@ -25,17 +22,26 @@ func on_card_loaded() -> void:
 	surbrillance_sprite = card.surbrillance_sprite
 	shadow_sprite = card.shadow_sprite
 	show_card()
+	# mettre on card flipped
 
 
 func _process(delta: float) -> void:
 	if dissolve_card:
 		dissolve(delta)
+	
+	if surbrillance_sprite:
+		if card.mouse_hover and card.card_selectable and not card.card_moving:
+			surbrillance_sprite.play("surbrillance")
+		else:
+			surbrillance_sprite.play("default")
+	
 
 
 func show_card():
-	if card_hidden:
+	if card.card_hidden:
 		card_sprite.play("flip")
-		card_hidden = false
+		await card_sprite.animation_finished
+		card_flip.emit()
 
 
 ## Fonctions qui gèrent l'effet de dissolution

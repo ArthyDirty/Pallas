@@ -7,7 +7,7 @@ var Emplacements
 var col_max = 0
 var row_max = 0
 
-var cards_in_game: Array[Card] = []
+var cards_in_game: Array[CardManager] = []
 var jeu = []
 var jeu_emplacements = []
 var jeu_carte = []
@@ -16,7 +16,7 @@ var won = false
 signal score_changed(score)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	cards_in_game = GameData.cards_in_game
 
 
@@ -30,7 +30,7 @@ func _on_card_placed(emp_col, emp_row, card, card_name, node: Emplacement):
 			var card_count = 0
 			for i in jeu_carte:
 				for j in i:
-					if j is Card:
+					if j is CardManager:
 						card_count += 1
 			if card_count == 9:
 				end_game()

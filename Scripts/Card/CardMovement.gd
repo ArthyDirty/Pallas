@@ -17,6 +17,10 @@ var last_emplacement
 var last_pos
 var dif_pos
 
+# === Signaux ===
+signal card_moving(state)
+signal card_selectable(state)
+
 
 func _ready() -> void:
 	card = get_parent()
@@ -35,6 +39,7 @@ func _drag_card():
 
 func _on_card_button_down():
 	if can_move:
+		card_moving.emit(true)
 		card_clicked = true
 		last_pos = card.global_position
 		dif_pos = card.global_position - get_viewport().get_mouse_position()
@@ -53,17 +58,15 @@ func _on_card_button_up():
 
 
 func _place_card_with_animation():
-	var distance = card.global_position.distance_to(emplacement_pos)
-	var duration = distance / 100
-	var overshoot = (card.global_position - emplacement_pos) * 0.02
-	var overshoot_pos = emplacement_pos - overshoot
-
 	var tween = create_tween()
 	tween.tween_property(card, "global_position", emplacement_pos, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
-	await get_tree().create_timer(duration + duration/2).timeout
+	await get_tree().create_timer(0.4).timeout
 	last_emplacement.place_card(card)
+	
 	can_move = false
+	card_moving.emit(false)
+	card_selectable.emit(false)
 
 
 func _return_to_last_position():
@@ -75,11 +78,8 @@ func _return_to_last_position():
 	var tween = create_tween()
 	tween.tween_property(card, "global_position", overshoot_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(card, "global_position", last_pos, duration/4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-
-	await get_tree().create_timer(duration).timeout
-	tween = create_tween()
-
-	await get_tree().create_timer(duration/2).timeout
+	await get_tree().create_timer(duration + duration/4).timeout
+	card_moving.emit(false)
 
 
 func _on_emplacement_entered(emplacement: Emplacement):
@@ -89,5 +89,5 @@ func _on_emplacement_entered(emplacement: Emplacement):
 		last_emplacement = emplacement
 
 
-func _on_emplacement_exited(emplacement: Emplacement):
+func _on_emplacement_exited():
 	emplacement_hover = false

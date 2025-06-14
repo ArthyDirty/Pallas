@@ -4,7 +4,7 @@ extends Node2D
 
 ## Ce script gère les données des cartes et le chargements des sprites
 
-var data: CardData = null
+@export var data: CardData = null
 
 @onready var card_sprite: AnimatedSprite2D = $CardSprite
 @onready var surbrillance_sprite: AnimatedSprite2D = $SurbrillanceSprite
@@ -13,6 +13,13 @@ var data: CardData = null
 @onready var card_movement: CardMovement = $CardMovement
 @onready var card_animator: CardAnimator = $CardAnimator
 
+var card_moving = false
+var card_hidden = true
+var card_placed = false
+var card_selectable = true
+
+var mouse_hover = true
+
 
 func _ready():
 	if data == null:
@@ -20,6 +27,10 @@ func _ready():
 		return
 	_load_sprite_frames()
 	card_animator.on_card_loaded()
+
+
+func _process(_delta: float) -> void:
+	mouse_hover = card_button.get_rect().has_point(to_local(get_global_mouse_position()))
 
 
 func _load_sprite_frames():
@@ -40,3 +51,15 @@ func set_card_data(card_data: CardData) -> void:
 	data = card_data
 	if card_sprite:
 		_load_sprite_frames()
+
+
+func _on_card_moving(state: Variant) -> void:
+	card_moving = state
+
+
+func _on_card_flip() -> void:
+	card_hidden = not card_hidden
+
+
+func _on_card_selectable(state: Variant) -> void:
+	card_selectable = state

@@ -6,14 +6,14 @@ var deck: Deck = null
 var hide_next = false
 var reveal_hidden_card = false
 
-var cards_in_game: Array[Card] = []
+var cards_in_game: Array[CardManager] = []
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	cards_in_game = GameData.cards_in_game
 
 
-func _on_card_drawn(card_drawn : Card):
+func _on_card_drawn(card_drawn: CardManager):
 	if hide_next:
 		hide_next = false
 		card_drawn.hide_card_on_draw()
@@ -22,15 +22,14 @@ func _on_card_drawn(card_drawn : Card):
 			card_drawn.data = deck.deck_data.common_cards.pick_random()
 			GameData.cards_drawn_history.append(str(card_replaced) + " hidden replaced by next card")
 		return
-	card_drawn.card_flipped.connect(_on_card_flipped)
 
 
-func _on_card_flipped(card):
+func _on_card_flipped(card: CardManager):
 	var power_type = card.data.power_type
 	PowerTypes.apply_power(power_type, card, deck)
 
 
-func on_card_clicked(card: Card):
+func on_card_clicked(card: CardManager):
 	if reveal_hidden_card and card.card_hidden:
 		card.show_card()
 		for element in cards_in_game:
@@ -56,9 +55,9 @@ func hide_placed_cards():
 			card.hide_card()
 
 
-func copy_card(card : Card):
-	pass
-	
+#func copy_card(card : CardManager):
+	#pass
+	#
 	#card.can_move = false
 	#
 	## choix d'une carte parmis celle du deck moon

@@ -2,21 +2,21 @@ extends Node
 
 
 var cards_drawn_history = []
-var cards_in_game: Array[Card] = []
+var cards_in_game: Array[CardManager] = []
 var deck: Deck = null
 
-var last_card_drawn: Card
+var last_card_drawn: CardManager
 
 
 func _ready() -> void:
 	print("GameData loaded")
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	clean_cards_in_game()
 
 
-func _on_card_drawn(card: Card):
+func _on_card_drawn(card: CardManager):
 	cards_in_game.append(card)
 	cards_drawn_history.append(CardNames.CardName.keys()[card.data.name])
 	last_card_drawn = card
