@@ -55,7 +55,6 @@ func _on_button_mouse_exited() -> void:
 
 
 func _on_hover_timer_timeout():
-	print(GameData.get_stats())
 	deck_stat_panel.show_stats()
 	deck_stat_panel.visible = true
 

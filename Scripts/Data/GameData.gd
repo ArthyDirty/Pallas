@@ -40,7 +40,7 @@ func get_stats() -> Dictionary:
 		var name = CardNames.CardName.keys()[card.name]
 		initial[name] = initial.get(name, 0) + 1
 		drawn[name] = drawn.get(name, 0)
-		remaining[name] = remaining.get(name, 0)
+		remaining[name] = remaining.get(name, 0) + 1
 		total += 1
 	initial["TOTAL"] = total
 

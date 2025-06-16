@@ -1,14 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://cds2fid5m4saa"]
+[gd_scene load_steps=5 format=3 uid="uid://cds2fid5m4saa"]
 
 [ext_resource type="Script" uid="uid://btfv2kn6duqxn" path="res://Scripts/UI/CardStatLine.gd" id="1_qsnr8"]
+[ext_resource type="Texture2D" uid="uid://dklo2qf57fpmj" path="res://Sprites/Cards01.png" id="2_nohhu"]
+[ext_resource type="FontFile" uid="uid://u2aeg6asgghy" path="res://Divers/Fonts/BISON-BOLD.TTF" id="3_toyap"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toyap"]
+atlas = ExtResource("2_nohhu")
+region = Rect2(2754, 60, 612, 1081)
 
 [node name="CardStatLine" type="HBoxContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(512, 512)
+offset_right = 845.0
+offset_bottom = 512.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+alignment = 1
 script = ExtResource("1_qsnr8")
 
 [node name="CardIcon" type="TextureRect" parent="."]
 layout_mode = 2
+texture = SubResource("AtlasTexture_toyap")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="DrawChance" type="Label" parent="."]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_toyap")
+theme_override_font_sizes/font_size = 150
+text = "60 %"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="ready" from="." to="." method="_on_ready"]
