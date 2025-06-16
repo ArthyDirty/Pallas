@@ -4,6 +4,10 @@ extends Node2D
 
 @onready var deck_animated_sprite: AnimatedSprite2D = $DeckAnimatedSprite
 @onready var surbrillance_animated_sprite: AnimatedSprite2D = $SurbrillanceAnimatedSprite
+@onready var hover_timer: Timer = $HoverTimer
+@onready var deck_stat_panel: Control = $DeckStatPanel
+
+
 
 const card_scene = preload("res://Scenes/Cards/CardScene.tscn")
 
@@ -23,6 +27,7 @@ func _ready() -> void:
 	PowerManager.set_deck(self)
 	WinManager.set_deck(self)
 	GameData.set_deck(self)
+	hover_timer.timeout.connect(_on_hover_timer_timeout)
 	
 	if deck_data and !deck_data.cards.is_empty():
 		cards = deck_data.get_deck_copy()
@@ -38,12 +43,21 @@ func _on_button_up() -> void:
 
 
 func _on_button_mouse_entered() -> void:
+	hover_timer.start()
 	if !deck_empty and can_draw:
 		surbrillance_animated_sprite.play("surbrillance")
 
 
 func _on_button_mouse_exited() -> void:
+	hover_timer.stop()
 	surbrillance_animated_sprite.play("default")
+	deck_stat_panel.visible = false
+
+
+func _on_hover_timer_timeout():
+	print(GameData.get_stats())
+	deck_stat_panel.show_stats()
+	deck_stat_panel.visible = true
 
 
 func spawn_card(card: CardData = null):

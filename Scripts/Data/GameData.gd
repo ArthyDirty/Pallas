@@ -20,7 +20,6 @@ func _on_card_drawn(card: CardManager):
 	cards_in_game.append(card)
 	cards_drawn_history.append(CardNames.CardName.keys()[card.data.name])
 	last_card_drawn = card
-	print(get_stats())
 
 func display_history():
 	print(cards_drawn_history)
@@ -31,38 +30,31 @@ func clean_cards_in_game():
 	cards_in_game = cards_in_game.filter(func(card): return card != null)
 
 
-func get_stats():
-	var initial_deck_card_count := {}
-	var game_card_count := {}
-	var deck_card_count := {}
-	var total_initial := 0
-	var total_drawn := 0
-	
-	# Comptage des cartes dans le deck initial
+func get_stats() -> Dictionary:
+	var initial = {}
+	var drawn = {}
+	var remaining = {}
+	var total = 0
+
 	for card in deck.deck_data.cards:
-		var card_name = CardNames.CardName.keys()[card.name]
-		initial_deck_card_count[card_name] = initial_deck_card_count.get(card_name, 0) + 1
-		total_initial += 1
-	
-	# Comptage des cartes tirées
-	for card_name in cards_drawn_history:
-		game_card_count[card_name] = game_card_count.get(card_name, 0) + 1
-		total_drawn += 1
-	
-	# Calcul des cartes restantes
-	for card_name in initial_deck_card_count.keys():
-		var drawn = game_card_count.get(card_name, 0)
-		deck_card_count[card_name] = initial_deck_card_count[card_name] - drawn
-	
-	# Ajout des totaux
-	initial_deck_card_count["TOTAL"] = total_initial
-	game_card_count["TOTAL"] = total_drawn
-	deck_card_count["TOTAL"] = total_initial - total_drawn
-	
+		var name = CardNames.CardName.keys()[card.name]
+		initial[name] = initial.get(name, 0) + 1
+		drawn[name] = drawn.get(name, 0)
+		remaining[name] = remaining.get(name, 0)
+		total += 1
+	initial["TOTAL"] = total
+
+	for name in cards_drawn_history:
+		drawn[name] = drawn.get(name, 0) + 1
+		drawn["TOTAL"] = drawn.get("TOTAL", 0) + 1
+		remaining[name] = initial.get(name, 0) - drawn.get(name, 0)
+
+	remaining["TOTAL"] = total - drawn.get("TOTAL", 0)
+
 	return {
-		"initial": initial_deck_card_count,
-		"drawn": game_card_count,
-		"remaining": deck_card_count
+		"initial": initial,
+		"drawn": drawn,
+		"remaining": remaining
 	}
 
 

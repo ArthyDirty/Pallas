@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cds2fid5m4saa"]
+
+[ext_resource type="Script" uid="uid://btfv2kn6duqxn" path="res://Scripts/UI/CardStatLine.gd" id="1_qsnr8"]
+
+[node name="CardStatLine" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_qsnr8")
+
+[node name="CardIcon" type="TextureRect" parent="."]
+layout_mode = 2
+
+[node name="DrawChance" type="Label" parent="."]
+layout_mode = 2
