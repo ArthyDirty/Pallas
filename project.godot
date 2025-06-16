@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Pallas"
-run/main_scene="uid://qi4wy48xqd82"
+run/main_scene="uid://bvlwnqm0db1v"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

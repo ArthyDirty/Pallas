@@ -37,17 +37,17 @@ func get_stats() -> Dictionary:
 	var total = 0
 
 	for card in deck.deck_data.cards:
-		var name = CardNames.CardName.keys()[card.name]
-		initial[name] = initial.get(name, 0) + 1
-		drawn[name] = drawn.get(name, 0)
-		remaining[name] = remaining.get(name, 0) + 1
+		var card_name = CardNames.CardName.keys()[card.name]
+		initial[card_name] = initial.get(card_name, 0) + 1
+		drawn[card_name] = drawn.get(card_name, 0)
+		remaining[card_name] = remaining.get(card_name, 0) + 1
 		total += 1
 	initial["TOTAL"] = total
 
-	for name in cards_drawn_history:
-		drawn[name] = drawn.get(name, 0) + 1
+	for card_name in cards_drawn_history:
+		drawn[card_name] = drawn.get(card_name, 0) + 1
 		drawn["TOTAL"] = drawn.get("TOTAL", 0) + 1
-		remaining[name] = initial.get(name, 0) - drawn.get(name, 0)
+		remaining[card_name] = initial.get(card_name, 0) - drawn.get(card_name, 0)
 
 	remaining["TOTAL"] = total - drawn.get("TOTAL", 0)
 

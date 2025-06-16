@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvlwnqm0db1v"]
+
+[ext_resource type="Texture2D" uid="uid://bw1o3jbn1sfop" path="res://Sprites/LeftPanel.png" id="1_vrekt"]
+[ext_resource type="Texture2D" uid="uid://c7yii5sjw6e1o" path="res://Sprites/RightPanel.png" id="2_bktcr"]
+[ext_resource type="Texture2D" uid="uid://coe1dq6c3d6ar" path="res://Sprites/Plateau.png" id="3_7o2qh"]
+[ext_resource type="PackedScene" uid="uid://cspnylmqcxcop" path="res://Scenes/Utilities/CardSlot.tscn" id="4_bktcr"]
+
+[node name="forgeron" type="Node2D"]
+
+[node name="UserInterface" type="Control" parent="."]
+z_index = -4
+layout_mode = 3
+anchors_preset = 0
+offset_right = 8.0
+offset_bottom = 8.0
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftPanel" type="Sprite2D" parent="UserInterface"]
+position = Vector2(-725, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_vrekt")
+
+[node name="RightPanel" type="Sprite2D" parent="UserInterface"]
+position = Vector2(725, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_bktcr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PlateauSprite2D" type="Sprite2D" parent="."]
+z_index = -5
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_7o2qh")
+
+[node name="CardSlot" parent="." instance=ExtResource("4_bktcr")]

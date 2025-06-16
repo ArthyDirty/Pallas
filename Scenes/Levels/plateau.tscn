@@ -23,6 +23,7 @@ anchors_preset = 0
 offset_right = 8.0
 offset_bottom = 8.0
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="ScoreLabel" type="Label" parent="UserInterface"]
 z_index = 1
@@ -101,7 +102,7 @@ position = Vector2(727, -240)
 deck_data = ExtResource("8_0t2ds")
 
 [node name="ResetLevel" parent="." instance=ExtResource("5_adwds")]
-position = Vector2(892, -472)
+position = Vector2(883, 468)
 
 [node name="CardSlot" parent="." instance=ExtResource("10_guigt")]
 position = Vector2(727, 240)
