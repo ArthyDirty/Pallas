@@ -52,11 +52,11 @@ func end_game():
 	deck.can_draw = false
 	await get_tree().create_timer(0.5).timeout
 	for card in cards_in_game:
-		card.show_card()
+		card.card_animator.show_card()
 		await get_tree().create_timer(0.1).timeout
 	for card in cards_in_game:
 		if card:
-			card.card_animated_sprite.play_dissolve(true)
+			card.card_animator.play_dissolve(true)
 			await get_tree().create_timer(0.1).timeout
 	await get_tree().create_timer(2.5).timeout
 	GameData.reset_level()
