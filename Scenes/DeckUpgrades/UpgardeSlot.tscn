@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cylo6iccocbep"]
+
+[ext_resource type="Script" uid="uid://db2u883fi2ey3" path="res://Scripts/Emplacements/UpgradeSlot.gd" id="1_wbbr0"]
+[ext_resource type="SpriteFrames" uid="uid://b61wkoyqlc5yd" path="res://Sprites/SpriteFrames/emplacement_sprite_frames.tres" id="2_keogw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b7gly"]
+radius = 76.1052
+
+[node name="UpgradeSlot" type="Area2D"]
+scale = Vector2(0.25, 0.25)
+collision_layer = 2
+script = ExtResource("1_wbbr0")
+metadata/_custom_type_script = "uid://8s8ns2fomdem"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b7gly")
+
+[node name="CardSlotSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_keogw")
+autoplay = "default"
+
+[node name="Button" type="Button" parent="."]
+offset_left = -304.0
+offset_top = 584.0
+offset_right = 304.0
+offset_bottom = 696.0
+
+[connection signal="button_up" from="Button" to="." method="_on_button_up"]

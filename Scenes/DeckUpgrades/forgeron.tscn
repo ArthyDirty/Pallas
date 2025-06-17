@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvlwnqm0db1v"]
+[gd_scene load_steps=8 format=3 uid="uid://bvlwnqm0db1v"]
 
 [ext_resource type="Texture2D" uid="uid://bw1o3jbn1sfop" path="res://Sprites/LeftPanel.png" id="1_vrekt"]
 [ext_resource type="Texture2D" uid="uid://c7yii5sjw6e1o" path="res://Sprites/RightPanel.png" id="2_bktcr"]
 [ext_resource type="Texture2D" uid="uid://coe1dq6c3d6ar" path="res://Sprites/Plateau.png" id="3_7o2qh"]
+[ext_resource type="PackedScene" uid="uid://d14t5h65ng55w" path="res://Scenes/Decks/deck.tscn" id="4_8pcgr"]
 [ext_resource type="PackedScene" uid="uid://cspnylmqcxcop" path="res://Scenes/Utilities/CardSlot.tscn" id="4_bktcr"]
+[ext_resource type="Resource" uid="uid://i0ufh3knmkjp" path="res://Scenes/Decks/test_deck.tres" id="5_e8hbl"]
+[ext_resource type="PackedScene" uid="uid://cylo6iccocbep" path="res://Scenes/DeckUpgrades/UpgardeSlot.tscn" id="7_mvknh"]
 
 [node name="forgeron" type="Node2D"]
 
@@ -33,4 +36,11 @@ z_index = -5
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_7o2qh")
 
+[node name="Deck" parent="." instance=ExtResource("4_8pcgr")]
+position = Vector2(727, -240)
+deck_data = ExtResource("5_e8hbl")
+
 [node name="CardSlot" parent="." instance=ExtResource("4_bktcr")]
+position = Vector2(727, 240)
+
+[node name="UpgradeSlot" parent="." instance=ExtResource("7_mvknh")]

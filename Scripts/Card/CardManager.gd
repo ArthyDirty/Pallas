@@ -64,5 +64,16 @@ func _on_state_changed(state: Variant) -> void:
 		"placed":
 			data.current_state = CardStates.CardState.PLACED
 
+
 func _on_card_flip() -> void:
 	data.hidden_state = not data.hidden_state
+
+
+func upgrade_card(damage: int = 0, mult: int = 1):
+	if damage != 0:
+		data.change_damage(damage)
+	
+	if mult != 1:
+		data.change_mult(mult)
+	
+	print("card upgraded !")
